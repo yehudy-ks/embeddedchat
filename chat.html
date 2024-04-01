@@ -4,26 +4,30 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
 </head>
 	<body>
-		<script type='text/javascript'>
-			function initEmbeddedMessaging() {
-			console.debug('Antes del try');
-			try {
-				embeddedservice_bootstrap.settings.language = 'es'; // For example, enter 'en' or 'en-US'
-	
-				embeddedservice_bootstrap.init(
-					'00DD20000004X32',
-					'Chat_Web_Experience',
-					'https://totalplay--devksquare.sandbox.my.site.com/ESWChatWebExperience1703721853509',
-					{
-						scrt2URL: 'https://totalplay--devksquare.sandbox.my.salesforce-scrt.com'
-					}
-				);
-			} catch (err) {
-				console.error('Error loading Embedded Messaging: ', err);
-				}
-			};
-		</script>
-		<script type='text/javascript' src='https://totalplay--devksquare.sandbox.my.site.com/ESWChatWebExperience1703721853509/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
+<script type='text/javascript'>
+    function initEmbeddedMessaging() {
+        try {
+            embeddedservice_bootstrap.settings.language = 'es';
+            window.addEventListener("onEmbeddedMessagingReady", () => {
+                console.log("Inside Prechat API!!");
+                embeddedservice_bootstrap.prechatAPI.setHiddenPrechatFields({
+                    "Channel": "Web",
+                    "Skill": "Sales"
+                });
+            });
+            embeddedservice_bootstrap.init(
+                '00DD20000004X32',
+                'Chat_Web_Experience',
+                'https://totalplay--devksquare.sandbox.my.site.com/ESWChatWebExperience1703721853509', {
+                    scrt2URL: 'https://totalplay--devksquare.sandbox.my.salesforce-scrt.com'
+                }
+            );
+        } catch (err) {
+            console.error('Error loading Embedded Messaging: ', err);
+        }
+    };
+</script>
+<script type='text/javascript' src='https://totalplay--devksquare.sandbox.my.site.com/ESWChatWebExperience1703721853509/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
 
 	</body>
 </html>
