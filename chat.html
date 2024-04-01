@@ -5,7 +5,9 @@
 </head>
 	<body>
 <script type='text/javascript'>
+	console.log('antes del function');
     function initEmbeddedMessaging() {
+	    console.log('despues del function');
         try {
             embeddedservice_bootstrap.settings.language = 'es';
             window.addEventListener("onEmbeddedMessagingReady", () => {
